@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Меню ресторана</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #faf7f2;
+    color: #2b2b2b;
+    line-height: 1.5;
+    padding: 40px 20px;
+  }
+  h1 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+  .subtitle {
+    text-align: center;
+    color: #888;
+    margin-bottom: 40px;
+    font-style: italic;
+  }
+  .menu {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 28px;
+  }
+  .dish {
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    transition: transform .2s ease, box-shadow .2s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .dish:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+  .dish img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    background: #eee;
+  }
+  .dish-body {
+    padding: 18px 20px 22px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .dish h2 {
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+  }
+  .dish p {
+    color: #666;
+    font-size: 0.95rem;
+    flex: 1;
+  }
+  .price {
+    margin-top: 12px;
+    font-weight: 600;
+    color: #b8860b;
+    font-size: 1.05rem;
+  }
+</style>
+</head>
+<body>
+
+  <h1>Меню ресторана</h1>
+  <p class="subtitle">Название заведения — короткое описание</p>
+
+  <div class="menu" id="menu"></div>
+
+  <script>
+    // ==== ЗАПОЛНИ ЗДЕСЬ СВОИ ДАННЫЕ ====
+    // name  — название блюда
+    // desc  — описание
+    // price — цена (можно оставить пустым "")
+    const dishes = [
+      { name: "Блюдо 1",  desc: "Описание блюда 1",  price: "— ₽" },
+      { name: "Блюдо 2",  desc: "Описание блюда 2",  price: "— ₽" },
+      { name: "Блюдо 3",  desc: "Описание блюда 3",  price: "— ₽" },
+      { name: "Блюдо 4",  desc: "Описание блюда 4",  price: "— ₽" },
+      { name: "Блюдо 5",  desc: "Описание блюда 5",  price: "— ₽" },
+      { name: "Блюдо 6",  desc: "Описание блюда 6",  price: "— ₽" },
+      { name: "Блюдо 7",  desc: "Описание блюда 7",  price: "— ₽" },
+      { name: "Блюдо 8",  desc: "Описание блюда 8",  price: "— ₽" },
+      { name: "Блюдо 9",  desc: "Описание блюда 9",  price: "— ₽" },
+      { name: "Блюдо 10", desc: "Описание блюда 10", price: "— ₽" },
+      { name: "Блюдо 11", desc: "Описание блюда 11", price: "— ₽" },
+      { name: "Блюдо 12", desc: "Описание блюда 12", price: "— ₽" },
+      { name: "Блюдо 13", desc: "Описание блюда 13", price: "— ₽" },
+      { name: "Блюдо 14", desc: "Описание блюда 14", price: "— ₽" }
+    ];
+
+    // Имена файлов. Если у тебя без расширения — впиши как есть.
+    // Например: "i (1).jpg" или просто "i (1)".
+    const fileNames = Array.from({ length: 14 }, (_, i) => `i (${i + 1})`);
+
+    const container = document.getElementById("menu");
+    dishes.forEach((dish, i) => {
+      const card = document.createElement("article");
+      card.className = "dish";
+      card.innerHTML = `
+        <img src="${encodeURI(fileNames[i])}" alt="${dish.name}" loading="lazy">
+        <div class="dish-body">
+          <h2>${dish.name}</h2>
+          <p>${dish.desc}</p>
+          ${dish.price ? `<div class="price">${dish.price}</div>` : ""}
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  </script>
+
+</body>
+</html>
